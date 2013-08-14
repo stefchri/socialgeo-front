@@ -1,0 +1,64 @@
+Comments:
+    type: entity
+    table: comments
+    fields:
+        commentId:
+            id: true
+            type: bigint
+            nullable: false
+            column: comment_id
+            generator:
+                strategy: IDENTITY
+        commentBody:
+            type: text
+            nullable: false
+            column: comment_body
+        commentCreateddate:
+            type: datetime
+            nullable: false
+            column: comment_createddate
+        commentModifieddate:
+            type: datetime
+            nullable: true
+            column: comment_modifieddate
+        commentDeleteddate:
+            type: datetime
+            nullable: true
+            column: comment_deleteddate
+        commentParentid:
+            type: bigint
+            nullable: true
+            column: comment_parentid
+    manyToMany:
+        article:
+            targetEntity: Articles
+            cascade: {  }
+            mappedBy: comment
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+        event:
+            targetEntity: Events
+            cascade: {  }
+            mappedBy: comment
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+        media:
+            targetEntity: Media
+            cascade: {  }
+            mappedBy: comment
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+    manyToOne:
+        user:
+            targetEntity: Users
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_id:
+                    referencedColumnName: user_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

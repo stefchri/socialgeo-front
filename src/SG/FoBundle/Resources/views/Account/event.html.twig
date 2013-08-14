@@ -1,0 +1,23 @@
+{% extends 'SGFoBundle::layout.html.twig' %}
+
+{% block title %}
+Events
+{% endblock title %}
+{% block content %}
+<h1>My Events</h1>
+{% for event in events %}
+<section class="event">
+    <h4>{{event.eventName}} (created {{event.eventCreateddate|date("d/m/Y")}} by {{app.user.username}})</h4>
+    <p class="date">{{event.eventStartdate|date("d/m/Y")}} untill {{event.eventEnddate|date("d/m/Y")}}</p>
+    <div id="description">
+        {{ event.eventDescription }}
+    </div>
+    <p>Plusvotes: {{event.eventPlusvotes}} || Minvotes: {{event.eventMinvotes}}</p>
+    <div>
+        {{event.address.addressSreetname}} {{event.address.addressHousenumber}}, {{event.address.district.city.cityPostcode}} {{event.address.district.city.cityName}}
+    </div>
+    
+</section>
+<hr>
+{% endfor %}
+{% endblock content %}

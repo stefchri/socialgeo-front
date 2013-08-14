@@ -1,0 +1,119 @@
+Articles:
+    type: entity
+    table: articles
+    fields:
+        articleId:
+            id: true
+            type: bigint
+            nullable: false
+            column: article_id
+            generator:
+                strategy: IDENTITY
+        articleTitle:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: article_title
+        articleSynopsis:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: article_synopsis
+        articleBody:
+            type: text
+            nullable: false
+            column: article_body
+        articleCreateddate:
+            type: datetime
+            nullable: false
+            column: article_createddate
+        articleModifieddate:
+            type: datetime
+            nullable: true
+            column: article_modifieddate
+        articleDeleteddate:
+            type: datetime
+            nullable: true
+            column: article_deleteddate
+        articleImageurl:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+            column: article_imageurl
+        articleApproveddate:
+            type: datetime
+            nullable: true
+            column: article_approveddate
+        articlePlusvotes:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: article_plusvotes
+        articleMinvotes:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: article_minvotes
+    manyToMany:
+        category:
+            targetEntity: Categories
+            cascade: {  }
+            mappedBy: null
+            inversedBy: article
+            joinTable:
+                name: articles_has_categories
+                joinColumns:
+                    -
+                        name: article
+                        referencedColumnName: article_id
+                inverseJoinColumns:
+                    -
+                        name: category
+                        referencedColumnName: category_id
+            orderBy: null
+        comment:
+            targetEntity: Comments
+            cascade: {  }
+            mappedBy: null
+            inversedBy: article
+            joinTable:
+                name: articles_has_comments
+                joinColumns:
+                    -
+                        name: article
+                        referencedColumnName: article_id
+                inverseJoinColumns:
+                    -
+                        name: comment
+                        referencedColumnName: comment_id
+            orderBy: null
+        userFollowing:
+            targetEntity: Users
+            cascade: {  }
+            mappedBy: articleFollowed
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+    manyToOne:
+        address:
+            targetEntity: Addresses
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                address_id:
+                    referencedColumnName: address_id
+            orphanRemoval: false
+        user:
+            targetEntity: Users
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_id:
+                    referencedColumnName: user_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,20 @@
+{% extends 'SGFoBundle::layout.html.twig' %}
+{% block title %}
+Articles
+{% endblock title %}
+{% block content %}
+    {% for article in articles %}
+        <div class="entry-article">
+            <h3><a href="{{path('sg_fo_viewarticle', { 'id': article.articleId })}}">{{ article.articleTitle }}</a></h3>
+            <p>{{ article.articleSynopsis }}</p>
+            <img src="{{article.articleImageurl}}" />
+            <p>Plusvotes: {{article.articlePlusvotes}}</p>
+            <p>Minvotes: {{article.articleMinvotes}}</p>
+     {%if app.user == article.user %}
+            
+            <a href="{{path('sg_fo_editarticle', { 'id': article.articleId })}}">Edit article</a>
+            
+     {% endif %}
+        </div>
+    {% endfor %}
+{%endblock content %}

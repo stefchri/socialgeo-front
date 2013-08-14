@@ -1,0 +1,44 @@
+Districts:
+    type: entity
+    table: districts
+    fields:
+        districtId:
+            id: true
+            type: bigint
+            nullable: false
+            column: district_id
+            generator:
+                strategy: IDENTITY
+        districtName:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: district_name
+        districtDescription:
+            type: text
+            nullable: true
+            column: district_description
+        districtImageurl:
+            type: string
+            length: 128
+            fixed: false
+            nullable: true
+            column: district_imageurl
+        districtLocationlink:
+            type: string
+            length: 128
+            fixed: false
+            nullable: true
+            column: district_locationlink
+    manyToOne:
+        city:
+            targetEntity: Cities
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                city_id:
+                    referencedColumnName: city_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

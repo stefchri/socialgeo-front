@@ -1,0 +1,56 @@
+Addresses:
+    type: entity
+    table: addresses
+    fields:
+        addressId:
+            id: true
+            type: bigint
+            nullable: false
+            column: address_id
+            generator:
+                strategy: IDENTITY
+        addressStreet:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: address_street
+        addressHousenumber:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: address_housenumber
+        addressLat:
+            type: decimal
+            nullable: false
+            column: address_lat
+        addressLng:
+            type: decimal
+            nullable: false
+            column: address_lng
+    manyToMany:
+        event:
+            targetEntity: Events
+            cascade: {  }
+            mappedBy: address
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+        media:
+            targetEntity: Media
+            cascade: {  }
+            mappedBy: address
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+    manyToOne:
+        district:
+            targetEntity: Districts
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                district_id:
+                    referencedColumnName: district_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

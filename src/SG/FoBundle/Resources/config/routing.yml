@@ -1,0 +1,79 @@
+sg_fo_home:
+    pattern:  /
+    defaults: { _controller: SGFoBundle:Default:index }
+        
+sg_fo_login:
+    pattern:  /login
+    defaults: { _controller: SGFoBundle:Account:login }
+
+sg_fo_profile:
+    pattern:  /profile
+    defaults: { _controller: SGFoBundle:Account:view }
+    
+sg_fo_editprofile:
+    pattern:  /profile/edit
+    defaults: { _controller: SGFoBundle:Account:edit }
+
+
+sg_fo_userevents:
+    pattern:  /user/events
+    defaults: { _controller: SGFoBundle:Account:event }
+
+sg_fo_userbookmarks:
+    pattern:  /user/bookmarks
+    defaults: { _controller: SGFoBundle:Account:bookmarks }
+    
+sg_fo_login_check:
+    pattern:  /login_check
+    
+sg_fo_logout:
+    pattern:  /logout
+    
+sg_fo_register:
+    pattern:  /register
+    defaults: { _controller: SGFoBundle:Account:register }
+    
+sg_fo_city:
+    pattern:  /city
+    defaults: { _controller: SGFoBundle:City:index }
+    
+sg_fo_country:
+    pattern:  /country
+    defaults: { _controller: SGFoBundle:Country:index }
+    
+sg_fo_district:
+    pattern:  /district
+    defaults: { _controller: SGFoBundle:District:index }
+
+sg_fo_viewdistrict:
+    pattern:  /district/{id}
+    defaults: { _controller: SGFoBundle:District:view }
+    
+sg_fo_event:
+    pattern:  /event
+    defaults: { _controller: SGFoBundle:Event:index}
+    
+sg_fo_contact:
+    pattern:  /contact
+    defaults: { _controller: SGFoBundle:Contact:index}
+    
+sg_fo_about:
+    pattern:  /about
+    defaults: { _controller: SGFoBundle:About:index}
+    
+sg_fo_disclaimer:
+    pattern:  /disclaimer
+    defaults: { _controller: SGFoBundle:Disclaimer:index}
+    
+sg_fo_articles:
+    pattern:  /articles
+    defaults: { _controller: SGFoBundle:Article:index}
+    
+sg_fo_viewarticle:
+    pattern:  /article/{id}
+    defaults: { _controller: SGFoBundle:Article:view}
+
+sg_fo_editarticle:
+    pattern:  /article/edit/{id}
+    defaults: { _controller: SGFoBundle:Article:edit}
+    

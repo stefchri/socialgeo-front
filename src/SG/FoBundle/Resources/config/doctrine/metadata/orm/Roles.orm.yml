@@ -1,0 +1,35 @@
+Roles:
+    type: entity
+    table: roles
+    fields:
+        roleId:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: role_id
+            generator:
+                strategy: IDENTITY
+        roleDescription:
+            type: text
+            nullable: true
+            column: role_description
+        roleName:
+            type: string
+            length: 128
+            fixed: false
+            nullable: false
+            column: role_name
+        roleOrder:
+            type: boolean
+            nullable: false
+            column: role_order
+    manyToMany:
+        user:
+            targetEntity: Users
+            cascade: {  }
+            mappedBy: role
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+    lifecycleCallbacks: {  }

@@ -1,0 +1,49 @@
+Categories:
+    type: entity
+    table: categories
+    fields:
+        categoryId:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: category_id
+            generator:
+                strategy: IDENTITY
+        categoryName:
+            type: string
+            length: 128
+            fixed: false
+            nullable: false
+            column: category_name
+        categoryApproveddate:
+            type: datetime
+            nullable: true
+            column: category_approveddate
+        categoryDeleteddate:
+            type: datetime
+            nullable: true
+            column: category_deleteddate
+    manyToMany:
+        article:
+            targetEntity: Articles
+            cascade: {  }
+            mappedBy: category
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+        event:
+            targetEntity: Events
+            cascade: {  }
+            mappedBy: category
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+        media:
+            targetEntity: Media
+            cascade: {  }
+            mappedBy: category
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+    lifecycleCallbacks: {  }

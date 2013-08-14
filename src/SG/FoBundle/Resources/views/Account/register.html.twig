@@ -1,0 +1,13 @@
+{% extends 'SGFoBundle::layout.html.twig' %}
+
+{% block title %}
+Register
+{% endblock title %}
+{% block content %}
+        <form novalidate="novalidate" id="form-register" action="{{ path('sg_fo_register') }}" method="post">
+                {{ form_widget(form) }}
+                <p>
+                    <input type="submit" value="Register" id="register" name="register" />
+                </p>
+        </form>
+{% endblock content %}

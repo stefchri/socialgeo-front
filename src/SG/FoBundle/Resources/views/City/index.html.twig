@@ -1,0 +1,42 @@
+{% extends 'SGFoBundle::layout.html.twig' %}
+
+{% block title %}
+Cities
+{% endblock title %}
+{% block content %}
+    <p>All cities:</p>
+    {% for city in cities %}
+        <br/>
+        <div class="entry-city">
+            {{ city.cityPostcode }} {{ city.cityName }}<br/>
+            {{ city.cityDescription }}
+        </div>
+        <div id="map" style="width:70%;height:300px;"></div>
+    {% endfor %}
+{%endblock content %}
+{% block gmap %}
+<script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqsjbo0JTyqexEzIBOYcolZlo5SBUGrHc&sensor=false">
+    </script>
+<script>
+    function getDistrict(data)
+    {
+        //var json = data;
+        console.log(data);
+    }
+    window.onload = function()
+    {
+        var myLatLng = new google.maps.LatLng(51.055207, 3.722305);
+        var mapOptions = {
+          zoom: 4,
+          center: myLatLng,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+
+        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+        var city = new google.maps.KmlLayer('http://data.appsforghent.be/poi/wijken.kml');
+        city.setMap(map);
+    }
+</script>
+{% endblock gmap %}

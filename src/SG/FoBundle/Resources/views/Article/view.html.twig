@@ -1,0 +1,13 @@
+{% extends 'SGFoBundle::layout.html.twig' %}
+{% block title %}
+Articles
+{% endblock title %}
+{% block content %}
+        <div class="article">
+            <h3>{{ article.articleTitle }}</h3>
+            <p>{{ article.articleSynopsis }}</p>
+            <img src="{{article.articleImageurl}}" />
+            <p>Plusvotes: {{article.articlePlusvotes}}</p>
+            <p>Minvotes: {{article.articleMinvotes}}</p>
+        </div>
+{%endblock content %}

@@ -1,0 +1,212 @@
+Users:
+    type: entity
+    table: users
+    fields:
+        userId:
+            id: true
+            type: bigint
+            nullable: false
+            column: user_id
+            generator:
+                strategy: IDENTITY
+        userFirstname:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: user_firstname
+        userSurname:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: user_surname
+        userUsername:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: user_username
+        userPassword:
+            type: string
+            length: 64
+            fixed: true
+            nullable: false
+            column: user_password
+        userPasswordsalt:
+            type: string
+            length: 128
+            fixed: false
+            nullable: false
+            column: user_passwordsalt
+        userEmail:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: user_email
+        userAvatarurl:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+            column: user_avatarurl
+        userSecurityquestion:
+            type: string
+            length: 500
+            fixed: false
+            nullable: false
+            column: user_securityquestion
+        userSecurityanswer:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: user_securityanswer
+        userCreateddate:
+            type: datetime
+            nullable: false
+            column: user_createddate
+        userModifieddate:
+            type: datetime
+            nullable: true
+            column: user_modifieddate
+        userDeleteddate:
+            type: datetime
+            nullable: true
+            column: user_deleteddate
+        userActivationkey:
+            type: string
+            length: 64
+            fixed: true
+            nullable: true
+            column: user_activationkey
+        userActivationdate:
+            type: datetime
+            nullable: true
+            column: user_activationdate
+        userLockeddate:
+            type: datetime
+            nullable: true
+            column: user_lockeddate
+        userLastlogindate:
+            type: datetime
+            nullable: true
+            column: user_lastlogindate
+        userLastactivitydate:
+            type: datetime
+            nullable: true
+            column: user_lastactivitydate
+        userLastpasswordchangeddate:
+            type: datetime
+            nullable: true
+            column: user_lastpasswordchangeddate
+        userAmountloggedin:
+            type: bigint
+            nullable: true
+            column: user_amountloggedin
+        userMediavotes:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: user_mediavotes
+        userArticlevotes:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: user_articlevotes
+        userEventvotes:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: user_eventvotes
+        userCreateditems:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: user_createditems
+    manyToMany:
+        articleFollowed:
+            targetEntity: Articles
+            cascade: {  }
+            mappedBy: null
+            inversedBy: userFollowing
+            joinTable:
+                name: users_follow_articles
+                joinColumns:
+                    -
+                        name: user_following
+                        referencedColumnName: user_id
+                inverseJoinColumns:
+                    -
+                        name: article_followed
+                        referencedColumnName: article_id
+            orderBy: null
+        eventFollowed:
+            targetEntity: Events
+            cascade: {  }
+            mappedBy: null
+            inversedBy: userFollowing
+            joinTable:
+                name: users_follow_events
+                joinColumns:
+                    -
+                        name: user_following
+                        referencedColumnName: user_id
+                inverseJoinColumns:
+                    -
+                        name: event_followed
+                        referencedColumnName: event_id
+            orderBy: null
+        mediaFollowed:
+            targetEntity: Media
+            cascade: {  }
+            mappedBy: null
+            inversedBy: userFollowing
+            joinTable:
+                name: users_follow_media
+                joinColumns:
+                    -
+                        name: user_following
+                        referencedColumnName: user_id
+                inverseJoinColumns:
+                    -
+                        name: media_followed
+                        referencedColumnName: media_id
+            orderBy: null
+        role:
+            targetEntity: Roles
+            cascade: {  }
+            mappedBy: null
+            inversedBy: user
+            joinTable:
+                name: users_has_roles
+                joinColumns:
+                    -
+                        name: user
+                        referencedColumnName: user_id
+                inverseJoinColumns:
+                    -
+                        name: role
+                        referencedColumnName: role_id
+            orderBy: null
+    manyToOne:
+        userCurrentaddress:
+            targetEntity: Addresses
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_currentaddress:
+                    referencedColumnName: address_id
+            orphanRemoval: false
+        userHomeaddress:
+            targetEntity: Addresses
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_homeaddress:
+                    referencedColumnName: address_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,14 @@
+{% extends 'SGFoBundle::layout.html.twig' %}
+{% block title %}
+Districts
+{% endblock title %}
+{% block content %}
+    <p>Nearby districts:</p>
+    {% for district in districts %}
+        <div class="entry-district">
+            <h3><a href="{{path('sg_fo_viewdistrict', { 'id': district.districtId })}}">{{ district.districtName }}</a></h3>
+            <p>{{ district.districtDescription }}</p>
+            <img src="{{district.districtImageurl}}" />
+        </div>
+    {% endfor %}
+{%endblock content %}

@@ -1,0 +1,23 @@
+Templates:
+    type: entity
+    table: templates
+    fields:
+        templateId:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: template_id
+            generator:
+                strategy: IDENTITY
+        templateName:
+            type: string
+            length: 45
+            fixed: false
+            nullable: false
+            column: template_name
+        templateBody:
+            type: text
+            nullable: false
+            column: template_body
+    lifecycleCallbacks: {  }

@@ -1,0 +1,49 @@
+{% extends 'SGFoBundle::layout.html.twig' %}
+
+{% block title %}
+Events
+{% endblock title %}
+{% block content %}
+    <p>All events:</p>
+    {% for event in events %}
+        <div class="entry-event">
+            {{ event.eventName }}<br/>
+            {{ event.eventDescription }}<br/>
+            Event starts: {{ event.eventStartdate|date("d/m/Y") }} | Events ends: {{ event.eventEnddate|date("d/m/Y") }}<br/>
+            Likes: {{ event.eventPlusvotes }} | Dislikes: {{ event.eventMinvotes }}
+        </div>
+    {% endfor %}
+    <div id="map" style="width:70%;height:300px;"></div>
+{%endblock content %}
+{% block gmap %}
+<script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqsjbo0JTyqexEzIBOYcolZlo5SBUGrHc&sensor=false">
+    </script>
+<script>
+    window.onload = function()
+    {
+        var myLatLng = new google.maps.LatLng(51.055207, 3.722305);
+        var mapOptions = {
+          zoom: 14,
+          center: myLatLng,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+
+        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+        var district = new google.maps.KmlLayer('{{district.districtLocationlink}}');
+        district.setMap(map);
+        
+        {% for event in events%}
+            
+            {% for address in event.address%}
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng({{address.addressLat}},{{address.addressLng}}),
+                    map: map,
+                    title:'{{event.eventName}}'
+  });
+        {% endfor%}
+        {% endfor%}
+    }
+</script>
+{% endblock gmap %}

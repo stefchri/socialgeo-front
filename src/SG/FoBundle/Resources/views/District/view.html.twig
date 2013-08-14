@@ -1,0 +1,40 @@
+{% extends 'SGFoBundle::layout.html.twig' %}
+
+{% block title %}
+{{district.districtName}}
+{% endblock title %}
+{% block content %}
+<h2>District: {{ district.districtName }}</h2>
+<div class="description">
+
+        <img src="{{district.districtImageurl}}" alt="{{district.districtName}}" style="width:25%;float:right;height:80%;margin:20px;"/> 
+        {{district.districtDescription}}
+</div>
+<div id="map" style="width:70%;height:300px;margin:20px;"></div>
+{%endblock content %}
+{% block bottomScripts %}
+<script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqsjbo0JTyqexEzIBOYcolZlo5SBUGrHc&sensor=false">
+    </script>
+<script>
+    function getDistrict(data)
+    {
+        //var json = data;
+        console.log(data);
+    }
+    window.onload = function()
+    {
+        var myLatLng = new google.maps.LatLng(51.055207, 3.722305);
+        var mapOptions = {
+          zoom: 4,
+          center: myLatLng,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+
+        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+        var district = new google.maps.KmlLayer('{{district.districtLocationlink}}');
+        district.setMap(map);
+    }
+</script>
+{% endblock bottomScripts %}

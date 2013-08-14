@@ -1,0 +1,26 @@
+{% extends 'SGFoBundle::layout.html.twig' %}
+{% block title %}
+Bookmarks
+{% endblock title %}
+{% block content %}
+<h1>Events I am following</h1>
+<section class="events_bookmarked">
+{% for event in events %}
+    <p>{{event.EventName}}</p>
+{% endfor %}
+</section>
+<hr>
+<h1>Articles I am following</h1>
+<section class="events_bookmarked">
+{% for article in articles %}
+    <p>{{article.articleTitle}}</p>
+{% endfor %}
+</section>
+<hr>
+<h1>Media I am following</h1>
+<section class="events_bookmarked">
+{% for m in media %}
+    <p>{{m.mediaTitle}}</p>
+{% endfor %}
+</section>
+{% endblock content %}

@@ -1,0 +1,133 @@
+Media:
+    type: entity
+    table: media
+    fields:
+        mediaId:
+            id: true
+            type: bigint
+            nullable: false
+            column: media_id
+            generator:
+                strategy: IDENTITY
+        mediaTitle:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: media_title
+        mediaDescription:
+            type: text
+            nullable: true
+            column: media_description
+        mediaMimetype:
+            type: string
+            length: 128
+            fixed: false
+            nullable: true
+            column: media_mimetype
+        mediaUrl:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: media_url
+        mediaCreateddate:
+            type: datetime
+            nullable: false
+            column: media_createddate
+        mediaModifieddate:
+            type: datetime
+            nullable: true
+            column: media_modifieddate
+        mediaDeleteddate:
+            type: datetime
+            nullable: true
+            column: media_deleteddate
+        mediaApproveddate:
+            type: datetime
+            nullable: true
+            column: media_approveddate
+        mediaPlusvotes:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: media_plusvotes
+        mediaMinvotes:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: media_minvotes
+    manyToMany:
+        event:
+            targetEntity: Events
+            cascade: {  }
+            mappedBy: media
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+        address:
+            targetEntity: Addresses
+            cascade: {  }
+            mappedBy: null
+            inversedBy: media
+            joinTable:
+                name: media_has_addresses
+                joinColumns:
+                    -
+                        name: media
+                        referencedColumnName: media_id
+                inverseJoinColumns:
+                    -
+                        name: address
+                        referencedColumnName: address_id
+            orderBy: null
+        category:
+            targetEntity: Categories
+            cascade: {  }
+            mappedBy: null
+            inversedBy: media
+            joinTable:
+                name: media_has_categories
+                joinColumns:
+                    -
+                        name: media
+                        referencedColumnName: media_id
+                inverseJoinColumns:
+                    -
+                        name: category
+                        referencedColumnName: category_id
+            orderBy: null
+        comment:
+            targetEntity: Comments
+            cascade: {  }
+            mappedBy: null
+            inversedBy: media
+            joinTable:
+                name: media_has_comments
+                joinColumns:
+                    -
+                        name: media
+                        referencedColumnName: media_id
+                inverseJoinColumns:
+                    -
+                        name: comment
+                        referencedColumnName: comment_id
+            orderBy: null
+        userFollowing:
+            targetEntity: Users
+            cascade: {  }
+            mappedBy: mediaFollowed
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+    manyToOne:
+        user:
+            targetEntity: Users
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_id:
+                    referencedColumnName: user_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

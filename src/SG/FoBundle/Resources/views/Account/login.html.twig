@@ -1,0 +1,19 @@
+{% extends 'SGFoBundle::layout.html.twig' %}
+
+{% block title %}
+Login
+{% endblock title %}
+{% block content %}
+        <form novalidate="novalidate" id="form-login" action="{{ path('sg_fo_login_check') }}" method="post">
+                {% if error %}
+                <div class="error">{{ error.message }}</div>
+                {% endif %}
+                <legend>Login</legend>
+                <dl>
+                    <dd><input type="text" id="username" name="userUsername" required="required" placeholder="Username" /></dd>
+                    <dd><input type="password" id="password" name="userPassword" required="required" placeholder="Password" /></dd>
+                    <dd><input name="remember" type="checkbox" checked>Remember me.</dd>
+                </dl>
+            <p><input name="login" type="submit" value="Login"></p>
+        </form>
+{% endblock content %}

@@ -1,0 +1,14 @@
+{% extends 'SGFoBundle::layout.html.twig' %}
+{% block title %}
+Edit Article
+{% endblock title %}
+{% block content %}
+          <form novalidate="novalidate" id="form-sgeo" method="POST" action="#">
+                        
+                {{ form_widget(form) }} 
+
+            <input name="button-clear" type="reset" value="Clear">
+            <input name="button-send" type="submit" value="Submit">
+        </form>
+
+{%endblock content %}

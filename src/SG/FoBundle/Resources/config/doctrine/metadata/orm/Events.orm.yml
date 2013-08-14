@@ -1,0 +1,138 @@
+Events:
+    type: entity
+    table: events
+    fields:
+        eventId:
+            id: true
+            type: bigint
+            nullable: false
+            column: event_id
+            generator:
+                strategy: IDENTITY
+        eventName:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: event_name
+        eventDescription:
+            type: text
+            nullable: true
+            column: event_description
+        eventStartdate:
+            type: datetime
+            nullable: false
+            column: event_startdate
+        eventEnddate:
+            type: datetime
+            nullable: false
+            column: event_enddate
+        eventCreateddate:
+            type: datetime
+            nullable: false
+            column: event_createddate
+        eventModifieddate:
+            type: datetime
+            nullable: true
+            column: event_modifieddate
+        eventDeleteddate:
+            type: datetime
+            nullable: true
+            column: event_deleteddate
+        eventApproveddate:
+            type: datetime
+            nullable: true
+            column: event_approveddate
+        eventPlusvotes:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: event_plusvotes
+        eventMinvotes:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: event_minvotes
+    manyToMany:
+        address:
+            targetEntity: Addresses
+            cascade: {  }
+            mappedBy: null
+            inversedBy: event
+            joinTable:
+                name: events_has_addresses
+                joinColumns:
+                    -
+                        name: event
+                        referencedColumnName: event_id
+                inverseJoinColumns:
+                    -
+                        name: address
+                        referencedColumnName: address_id
+            orderBy: null
+        category:
+            targetEntity: Categories
+            cascade: {  }
+            mappedBy: null
+            inversedBy: event
+            joinTable:
+                name: events_has_categories
+                joinColumns:
+                    -
+                        name: event
+                        referencedColumnName: event_id
+                inverseJoinColumns:
+                    -
+                        name: category
+                        referencedColumnName: category_id
+            orderBy: null
+        comment:
+            targetEntity: Comments
+            cascade: {  }
+            mappedBy: null
+            inversedBy: event
+            joinTable:
+                name: events_has_comments
+                joinColumns:
+                    -
+                        name: event
+                        referencedColumnName: event_id
+                inverseJoinColumns:
+                    -
+                        name: comment
+                        referencedColumnName: comment_id
+            orderBy: null
+        media:
+            targetEntity: Media
+            cascade: {  }
+            mappedBy: null
+            inversedBy: event
+            joinTable:
+                name: events_has_media
+                joinColumns:
+                    -
+                        name: event
+                        referencedColumnName: event_id
+                inverseJoinColumns:
+                    -
+                        name: media
+                        referencedColumnName: media_id
+            orderBy: null
+        userFollowing:
+            targetEntity: Users
+            cascade: {  }
+            mappedBy: eventFollowed
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+    manyToOne:
+        user:
+            targetEntity: Users
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_id:
+                    referencedColumnName: user_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

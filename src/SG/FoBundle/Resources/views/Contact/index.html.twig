@@ -1,0 +1,25 @@
+{% extends 'SGFoBundle::layout.html.twig' %}
+
+{% block title %}
+Contact
+{% endblock title %}
+{% block content %}
+    <p>Contact:</p>
+    <br/>
+    <i>Have a lingering question?</i>
+                <section>
+                   <form novalidate="novalidate" id="form-sgeo" method="post" action="{{ path('sg_fo_contact') }}">
+                        <fieldset class="fields-form">
+                            {# {{ form_widget(form) }} #}
+                                <dt>{{ form_label( form.gender) }}</dt>
+                                <dd>{{ form_widget(form.gender) }}{{ form_errors(form.gender) }}</dd>
+                                <dt>{{ form_label( form.subject) }}</dt>
+                                <dd>{{ form_widget(form.subject) }}{{ form_errors(form.subject) }}</dd>
+                                <dt>{{ form_label( form.message) }}</dt>
+                                <dd>{{ form_widget(form.message) }}{{ form_errors(form.message) }}</dd>
+                        </fieldset>
+                        <input name="button-clear" type="reset" value="Clear">
+                        <input name="button-send" type="submit" value="Submit">
+                    </form>
+                </section>
+{%endblock content %}

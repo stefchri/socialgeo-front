@@ -1,0 +1,32 @@
+{% extends 'SGFoBundle::layout.html.twig' %}
+
+{% block title %}
+Edit {{app.user.username}}
+{% endblock title %}
+{% block content %}
+<h3 class="title">{{app.user.username}} > Edit Profile</h3>
+<hr>
+<form action="{{ path('sg_fo_editprofile') }}" method="POST" novalidate="novalidate">
+<section class="profile">
+    <dd>username</dd><dt>{{form_widget(form.userUsername)}}</dt>
+    <dd>email</dd><dt>{{form_widget(form.userEmail)}}</dt>
+    <hr>
+    <dd>security question</dd><dt>{{form_widget(form.userSecurityquestion)}}</dt>
+    <dd>security answer</dd><dt>{{form_widget(form.userSecurityanswer)}}</dt>
+    <dd>password</dd><dt>{{form_widget(form.userPassword)}}</dt>
+    <hr>
+    <dd>avatar</dd><dt><img src="{{user.userAvatarurl}}" alt="profile picture" />
+        {{form_widget(form.userAvatarurl)}}
+    </dt>
+</section>
+<section id="address">
+    <p> {{form_widget(form.userHomeaddress)}}
+    </p>
+    <div id="map_address">
+    </div>
+</section>
+<div class=edit_profile">
+    <input type="submit" name="profile_edit" value="Save Changes" />
+</div>
+</form>
+{% endblock content %}

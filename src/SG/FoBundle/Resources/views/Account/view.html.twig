@@ -1,0 +1,71 @@
+{% extends 'SGFoBundle::layout.html.twig' %}
+
+{% block title %}
+{{app.user.username}} profile
+{% endblock title %}
+{% block content %}
+<h3 class="title">{{app.user.username}} > View Profile</h3>
+<hr>
+<section class="profile">
+    <dd>username</dd><dt>{{app.user.username}}</dt>
+    <dd>email</dd><dt>{{user.userEmail}}</dt>
+    <hr>
+    <dd>avatar</dd><dt><img src="{{user.userAvatarurl}}" alt="profile picture" /></dt>
+    <hr>
+    <section class="leaderboard">
+             <dd>leaderboard</dd>
+    </section>
+</section>
+<section id="address">
+    <p> {{user.userHomeaddress.addressStreet}} 
+        {{user.userHomeaddress.addressHousenumber}}, 
+        {{user.userHomeaddress.district.city.cityPostcode}} 
+        {{user.userHomeaddress.district.city.cityName}}
+    </p>
+    
+    <div id="map" style="width:70%;height:300px;"></div>
+</section>
+<div class=edit_profile">
+    <a href="{{path('sg_fo_editprofile')}}">Edit</a>
+</div>
+{% endblock content %}
+{% block gmap %}
+<script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqsjbo0JTyqexEzIBOYcolZlo5SBUGrHc&sensor=false">
+    </script>
+<script>
+    var geocoder
+    window.onload = function()
+    {
+        
+        var myLatLng = new google.maps.LatLng(51.055207, 3.722305);
+        var mapOptions = {
+          zoom: 14,
+          center: myLatLng,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+
+        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+        
+        geocoder = new google.maps.Geocoder();
+        var address = "{{user.userHomeaddress.addressStreet}} "
+        + "{{user.userHomeaddress.addressHousenumber}}, " 
+        + "{{user.userHomeaddress.district.city.cityPostcode}} " 
+        + "{{user.userHomeaddress.district.city.cityName}} "
+         +"{{user.userHomeaddress.district.city.cityName}} ";
+        geocoder.geocode( { 'address': address}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+              map.setCenter(results[0].geometry.location);
+              var marker = new google.maps.Marker({
+                  map: map,
+                  position: results[0].geometry.location
+              });
+            } else {
+              alert("Geocode was not successful for the following reason: " + status);
+            }
+          });
+                
+    }
+</script>
+{% endblock gmap %}

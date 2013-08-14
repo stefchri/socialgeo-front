@@ -1,0 +1,16 @@
+{% extends 'SGFoBundle::layout.html.twig' %}
+
+{% block title %}
+Countries
+{% endblock title %}
+{% block content %}
+    <p>All countries:</p>
+    <br/>
+    [ Available for Belgium only at this time. ]
+    {% for country in countries %}
+        <div class="entry-country">
+            <br/>
+            {#{{ country.countryName }}#}
+        </div>
+    {% endfor %}
+{%endblock content %}
